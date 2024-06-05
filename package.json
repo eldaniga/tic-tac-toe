@@ -2,7 +2,7 @@
   "name": "01-juego-x-0-tic-tac-toe",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://eldaniga.github.io/react-learning/projects/01-juego-x-0-tic-tac-toe",
+  "homepage": "https://eldaniga.github.io/tic-tac-toe",
   "type": "module",
   "scripts": {
     "dev": "vite",
