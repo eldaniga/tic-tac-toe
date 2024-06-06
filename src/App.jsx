@@ -4,8 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 const TURNS = {
-  X: "x",
-  O: "o"
+  X: "X",
+  O: "O"
 }
 
 
@@ -47,6 +47,18 @@ function App() {
   //null no hay ganador, false empate
   const [winner, setWinner] = useState(null)
 
+
+
+  const resetGame = ()=>{
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.X)
+    setWinner(null)
+  }
+
+  const checkEndGame = (newBoard)=>{
+      return newBoard.every((square)=> square !== null)
+  }
+
   const checkWinner = (boardToCheck)=>{
 
     //check every posibility
@@ -75,6 +87,8 @@ function App() {
       if(newWinner){
         console.log("The winner is : " + newWinner)
         setWinner(newWinner)
+      }else if(checkEndGame(newBoard)){
+        setWinner(false)
       }
 
 
@@ -96,6 +110,7 @@ function App() {
   return ( 
     <main className="board" >
         <h1>TIC TAC TOE</h1>
+        <button onClick={resetGame}>Reset Juego</button>
         <section className="game">
           {
             board.map((_, index) => {
@@ -113,6 +128,29 @@ function App() {
           <Square isSelected={turn==TURNS.X}>{TURNS.X}</Square>
           <Square isSelected={turn==TURNS.O}>{TURNS.O}</Square>
         </section>
+
+
+        {
+          winner!==null && (
+            <section className='winner'>
+                <div className='text'>
+                  <h2>
+                    {
+                      winner===false
+                      ? "Empate"
+                      : "Ha ganado: " + winner
+                    }
+                  </h2>
+                  <header className='win'>
+                    {winner && <Square>{winner}</Square>}
+                  </header>
+                  <footer>
+                    <button onClick={resetGame}>Empezar de Nuevo</button>
+                  </footer>
+                </div>
+            </section>
+          )
+        }
     </main>
     
   
