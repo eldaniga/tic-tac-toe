@@ -1,43 +1,13 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+
+import confetti from "canvas-confetti"
 import './App.css'
 
-const TURNS = {
-  X: "X",
-  O: "O"
-}
-
-
-
-const Square = ({children, isSelected, wasMarked,  updateBoard, index}) =>{
-  
-  const className = `square ${isSelected ? "is-selected" : ''}`
-  
-
-  const handleClick = ()=>{
-
-      updateBoard(index)
-    
-    
-  }
-  return(
-    <div className={className} onClick={handleClick}>
-      {children}
-    </div>
-  )
-}
-
-const WINNER_COMBOS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6]
-]
+//importing components
+import Square from './components/Square'
+import { TURNS, WINNER_COMBOS } from './Constants'
 
 
 
@@ -86,6 +56,7 @@ function App() {
       const newWinner = checkWinner(newBoard)
       if(newWinner){
         console.log("The winner is : " + newWinner)
+        confetti()
         setWinner(newWinner)
       }else if(checkEndGame(newBoard)){
         setWinner(false)
@@ -158,3 +129,5 @@ function App() {
 }
 
 export default App;
+
+
