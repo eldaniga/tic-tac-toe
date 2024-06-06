@@ -122,6 +122,15 @@ function App() {
             </section>
           )
         }
+
+
+        {
+          (
+            <footer>
+              <h5>Developed by: @eldaniga </h5>
+            </footer>
+          )
+        }
     </main>
     
   
